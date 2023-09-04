@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Karla:400,400i,700,700i');
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,500,600,700,900');
+
+.landingcus7 .border-rounded {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    background: #fff;
+}
+.landingcus7 .border-solid {
+    border: 1px solid #ddd;
+}
+.landingcus7 .text-bold {
+    font-weight: 700;
+}
+.landingcus7 .width-service-name {
+    width: 250px;
+}
+.landingcus7 .forced-pull-right-search {
+    float: right;
+    padding: 10px;
+    width: 250px;
+}
+.landingcus7 .nav-forced-centered {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+.landingcus7 .order-url {
+    word-wrap: break-word;
+    max-width: 40vw;
+}
+.landingcus7 .payment_authorized {
+    background-color: green;
+    color: white;
+}
+.landingcus7 .panel_icon_class {
+    margin-top: -16px;
+}
