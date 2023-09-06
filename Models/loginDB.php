@@ -32,7 +32,7 @@ class LoginDB
         }
     }
 
-   /* public static function usernameExistsAndPasswordIncorrect($username, $password)
+    public static function usernameExistsAndPasswordIncorrect($username, $password)
     {
         try {
             $db = \Connection::getDB();
@@ -63,7 +63,7 @@ class LoginDB
             // You can log the error or return an appropriate response
             return false;
         }
-    }*/
+    }
 
 
 
@@ -114,6 +114,26 @@ class LoginDB
 
     public static function register($username, $email, $phone, $password)
     {
+        // Validation for username
+        if (empty($username) || strlen($username) < 3) {
+            return "Error: Username must be at least 3 characters long.";
+        }
+
+        // Validation for email
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return "Error: Invalid email address.";
+        }
+
+        // Validation for phone number (assuming a simple numeric phone number)
+        if (!ctype_digit($phone) || strlen($phone) !== 10) {
+            return "Error: Invalid phone number. Please enter a 10-digit numeric phone number.";
+        }
+
+        // Validation for password
+        if (strlen($password) < 8) {
+            return "Error: Password must be at least 8 characters long.";
+        }
+
         try {
             $db = \Connection::getDB();
 
@@ -142,6 +162,7 @@ class LoginDB
             return "Error: " . $e->getMessage();
         }
     }
+
 
 
 

@@ -28,6 +28,10 @@ $routes = [
     $uriDefault . '/register' => 'Login::register',
 
     $uriDefault . '/logout' => 'Login::btnLogout',
+
+    $uriDefault . '/forgot' => 'Login::forgotPassword',
+
+
 ];
 
 

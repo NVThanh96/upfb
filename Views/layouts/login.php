@@ -67,8 +67,8 @@
 </style>
 
 <div class="container form-control padding_70"
-     style="max-width: 1350px; display: flex; justify-content: center; align-items: center;">
-    <div class="sign-in-blk" style="width: 100%;">
+     style="max-width: 1350px; display: flex; justify-content: center; align-items: center; padding: 0">
+    <div class="sign-in-blk" style="width: 100%;padding: 30px 45px;">
         <?php
 
         // Check if $message_error is not empty before displaying it
@@ -76,6 +76,8 @@
             echo '<div class="error-message text-white" style="text-align: center">' . $message_error . '</div>';
         }
         ?>
+        <div class="error-message text-white" style="text-align: center; display: none;"></div>
+
         <form class="js-validation-signup" method="POST" action="login?action=btnLogin" onsubmit="return validateLoginForm();">
             <div class="row justify-content-center"> <!-- Center the content horizontally -->
                 <div class="col-md-9">
@@ -109,7 +111,7 @@
                                        >Đăng ký</a>
                             </span>
                         <span class="col-2" style="padding-left: 15%">
-                                <a style="color: #aa6dff;text-decoration: none" href="/">Quên mật khẩu?</a>
+    <a style="color: #aa6dff; text-decoration: none" href="javascript:void(0);" id="forgotPassword">Quên mật khẩu?</a>
                             </span>
                     </div>
                 </div>
@@ -121,7 +123,9 @@
     document.addEventListener("DOMContentLoaded", function () {
         // Get the customLink element
         var customLink = document.getElementById("customLink");
+        var forgotPasswordLink = document.getElementById("forgotPassword");
         var registrationForm = document.getElementById("registrationForm");
+        var forgotPasswordForm = document.getElementById("forgotPasswordForm");
 
         customLink.addEventListener("click", function (event) {
             event.preventDefault(); // Prevent the default link behavior
@@ -143,6 +147,28 @@
                 registrationForm.style.display = "block";
             });
         });
+
+        // Similar functionality for the "Quên mật khẩu?" link
+        forgotPasswordLink.addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent the default link behavior
+
+            // Define the loadContent function
+            function loadForgotPasswordContent(url, callback) {
+                // Implement your AJAX request or any content loading logic here
+                // Once the content is loaded, call the callback function with the responseText
+                var responseText = "<p>Forgot password content goes here</p>"; // Replace this with your actual content
+                callback(responseText);
+            }
+
+            // Call the loadForgotPasswordContent function here
+            loadForgotPasswordContent('/upfb/', function (responseText) {
+                // Hide the content with class 'new1'
+                document.querySelector('.new1').innerHTML = responseText;
+
+                // Show the registrationForm
+                forgotPasswordForm.style.display = "block";
+            });
+        });
     });
 </script>
 
@@ -151,19 +177,15 @@
     function validateLoginForm() {
         var username = document.getElementById("username").value;
         var password = document.getElementById("password").value;
+        var errorMessage = document.querySelector('.error-message'); // Get the error message element
 
-        if (username.trim() === "") {
-            alert("Please enter a username.");
+        if (username.trim() === "" || password.trim() === "") {
+            errorMessage.textContent = 'Vui lòng nhập đủ tất cả các trường.';
+            errorMessage.style.display = "block"; // Show the error message
             return false;
+        } else {
+            errorMessage.style.display = "none"; // Hide the error message if validation is successful
+            return true;
         }
-
-        if (password.trim() === "") {
-            alert("Please enter a password.");
-            return false;
-        }
-
-        return true;
     }
 </script>
-
-

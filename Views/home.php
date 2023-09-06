@@ -5,10 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>UPFB.IO</title>
-    <link rel="icon" href="https://i.imgur.com/MUmp45c.png">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <style>
         * {
             margin: 0;
@@ -28,10 +24,6 @@
             width: 100%;
             height: 100%;
         }
-
-
-
-
 
         @media only screen and (max-width: 768px) {
             .img-header1 {
@@ -88,9 +80,17 @@
 
     </style>
 
+    <link rel="icon" href="https://i.imgur.com/MUmp45c.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <!-- Include SweetAlert2 CSS and JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.5/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.5/dist/sweetalert2.min.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
 </head>
 
 <body>
@@ -118,16 +118,24 @@
     <?php include "layouts/footer.php"; ?>
 </div>
 
+<div id="forgotPasswordForm" style="display: none;">
+    <?php include "layouts/forgot-password.php";?>
+    <?php include "layouts/footer.php"; ?>
+</div>
+
 <div id="scrollTrigger" style="display: none;" >
     <?php include "button/messenger.php"; ?>
 </div>
 
 
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
 </script>
+
 <script src="Public/js/snow.js"></script>
+
+<!--for button navbar header right click-->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         // Get the register link
@@ -135,8 +143,6 @@
 
         // Get the registrationForm div
         var registrationForm = document.getElementById("registrationForm");
-        /*var service = document.getElementById("service");
-        service.style.display = "none";*/
 
         // Add a click event listener to the register link
         registerLink.addEventListener("click", function (event) {
@@ -146,7 +152,6 @@
             loadContent('/upfb/', function (responseText) {
                 // Hide the content with class 'new1'
                 document.querySelector('.new1').innerHTML = responseText;
-
                 // Show the registrationForm
                 registrationForm.style.display = "block";
             });
