@@ -6,138 +6,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>UPFB.IO</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body,
+    html {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+
+    }
+
+    #snow {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    @media only screen and (max-width: 768px) {
+        .img-header1 {
+            display: none;
         }
 
-        body,
-        html {
+        .content {
             width: 100%;
-            height: 100%;
-            margin: 0;
-
         }
 
-        #snow {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        @media only screen and (max-width: 768px) {
-            .img-header1 {
-                display: none;
-            }
-            .content{
-                width: 100%;
-            }
-            .btn-start{
-                display: none;
-            }
-            .intro-text{
-                padding-top: 100px!important;
-                padding-bottom: 0px!important;
-            }
-
+        .btn-start {
+            display: none;
         }
 
         .intro-text {
-            padding-bottom: 100px;
-            margin: 0 5%;
+            padding-top: 100px !important;
+            padding-bottom: 0px !important;
         }
 
-        body {
-            background-image: url(Public/img/bg_full.4a1346ca.svg);
-            background-position: center top;
-            background-origin: padding-box;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-color: #292946;
-        }
+    }
 
-        #snow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9999; /* Ensure snow appears on top */
-        }
+    .intro-text {
+        padding-bottom: 100px;
+        margin: 0 5%;
+    }
 
-        /* CSS for the fade-in animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
+    body {
+        background-image: url(Public/img/bg_full.4a1346ca.svg);
+        background-position: center top;
+        background-origin: padding-box;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color: #292946;
+    }
 
-        .fade-in.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    #snow {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+        /* Ensure snow appears on top */
+    }
 
+    /* CSS for the fade-in animation */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .fade-in.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
     </style>
 
     <link rel="icon" href="https://i.imgur.com/MUmp45c.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <!-- Include SweetAlert2 CSS and JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.5/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.5/dist/sweetalert2.min.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
 <body>
-<?php include "layouts/navbar.php"; ?>
+    <?php include "layouts/navbar.php"; ?>
 
-<div id="snow"></div>
-
-
-<div class="new1"
-     id="conditionalContent" <?php echo ($_SERVER['REQUEST_URI'] == '/upfb/service') ? 'style="display: none;"' : ''; ?>>
-    <?php include "layouts/header.php"; ?>
-    <?php include "layouts/login.php"; ?>
-    <?php include "layouts/about-us.php"; ?>
-    <?php include "layouts/active.php"; ?>
-    <?php include "layouts/why.php"; ?>
-    <?php include "layouts/service.php"; ?>
-    <?php include "layouts/review.php"; ?>
-    <?php include "layouts/number-users.php"; ?>
-    <?php include "layouts/footer.php"; ?>
-</div>
+    <div id="snow"></div>
 
 
-<div id="registrationForm" style="display: none;">
-    <?php include "layouts/register.php"; ?>
-    <?php include "layouts/footer.php"; ?>
-</div>
+    <div class="new1" id="conditionalContent"
+        <?php echo ($_SERVER['REQUEST_URI'] == '/upfb/service') ? 'style="display: none;"' : ''; ?>>
+        <?php include "layouts/header.php"; ?>
+        <?php include "layouts/login.php"; ?>
+        <?php include "layouts/about-us.php"; ?>
+        <?php include "layouts/active.php"; ?>
+        <?php include "layouts/why.php"; ?>
+        <?php include "layouts/service.php"; ?>
+        <?php include "layouts/review.php"; ?>
+        <?php include "layouts/number-users.php"; ?>
+        <?php include "layouts/footer.php"; ?>
+    </div>
 
-<div id="forgotPasswordForm" style="display: none;">
-    <?php include "layouts/forgot-password.php";?>
-    <?php include "layouts/footer.php"; ?>
-</div>
 
-<div id="scrollTrigger" style="display: none;" >
-    <?php include "button/messenger.php"; ?>
-</div>
+    <div id="registrationForm" style="display: none;">
+        <?php include "layouts/register.php"; ?>
+        <?php include "layouts/footer.php"; ?>
+    </div>
+
+    <div id="forgotPasswordForm" style="display: none;">
+        <?php include "layouts/forgot-password.php";?>
+        <?php include "layouts/footer.php"; ?>
+    </div>
+
+    <div id="scrollTrigger" style="display: none;">
+        <?php include "button/messenger.php"; ?>
+    </div>
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
-</script>
+    </script>
 
-<script src="Public/js/snow.js"></script>
+    <script src="Public/js/snow.js"></script>
 
-<!--for button navbar header right click-->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
+    <!--for button navbar header right click-->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
         // Get the register link
         var registerLink = document.getElementById("register");
 
@@ -145,11 +148,11 @@
         var registrationForm = document.getElementById("registrationForm");
 
         // Add a click event listener to the register link
-        registerLink.addEventListener("click", function (event) {
+        registerLink.addEventListener("click", function(event) {
             event.preventDefault(); // Prevent the default link behavior
 
             // Call the loadContent function here
-            loadContent('/upfb/', function (responseText) {
+            loadContent('/upfb/', function(responseText) {
                 // Hide the content with class 'new1'
                 document.querySelector('.new1').innerHTML = responseText;
                 // Show the registrationForm
@@ -165,11 +168,10 @@
             callback(responseText);
         }
     });
+    </script>
 
-</script>
-
-<!--scroll down to show button message-->
-<script>
+    <!--scroll down to show button message-->
+    <script>
     function checkScroll() {
         console.log("Scroll event triggered."); // Check if the event is triggered
         var scrollTrigger = document.getElementById('scrollTrigger');
@@ -183,7 +185,7 @@
         }
     }
     window.addEventListener('scroll', checkScroll);
-</script>
+    </script>
 
 
 </body>

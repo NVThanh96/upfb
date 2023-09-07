@@ -1,7 +1,8 @@
 <style>
 .sign-in-blk.sign-in-blk-register {
-    max-width: 530px;
+    width: 530px;
     margin: 0 auto;
+    text-align: center;
 }
 
 .sign-in-blk {
@@ -34,7 +35,13 @@
     <div class="row">
         <div class="col-lg-12 col-md-12">
             <div class="sign-in-blk sign-in-blk-register">
-                <form class="js-validation-signup" action="register" method="POST">
+
+                <div id="loadingIcon" class="text-primary">
+                    <i class="fas fa-sync fa-spin fa-2x"></i>
+                </div>
+                <div id="responseMessage" class="text-danger"></div>
+
+                <form id="registerForm">
                     <div class="">
                         <div class="form-group">
                             <label for="username" class="control-label" style="float: left;">Tên tài khoản</label>
@@ -50,17 +57,24 @@
                             </label>
                             <input name="phone" placeholder="" id="phone" type="text" class="form-control">
                         </div>
-                        <div class="form-group"><label for="password" class="control-label" style="float: left;">Mật
-                                khẩu</label><input name="password" placeholder="" id="password" type="password"
-                                class="form-control"></div>
-                        <div class="form-group"><label for="confirm" class="control-label" style="float: left;">Nhập lại
-                                mật
-                                khẩu</label><input name="repeatpassword" placeholder="" id="repeatpassword"
-                                type="password" class="form-control"></div>
+                        <div class="form-group">
+                            <label for="password" class="control-label" style="float: left;">
+                                Mật khẩu
+                            </label>
+                            <input name="password" placeholder="" id="password" type="password" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm" class="control-label" style="float: left;">
+                                Nhập lại mật khẩu
+                            </label>
+                            <input name="repeatpassword" placeholder="" id="repeatpassword" type="password"
+                                class="form-control">
+                        </div>
                     </div>
                     <div class="inner-form-all">
                         <div class="single-form-blk-register">
-                            <button type="submit" class="text-white" style="padding: 0px 40px;">Đăng ký</button>
+                            <button type="submit" id="btnDangKy" class="text-white" style="padding: 0px 40px;">Đăng
+                                ký</button>
                         </div>
                     </div>
                     <div class="text-center">Bạn đã có tài khoản?
@@ -73,3 +87,40 @@
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $("#btnDangKy").click(function(e) {
+
+        e.preventDefault();
+
+        $(".sign-in-blk.sign-in-blk-register").css("margin-left", "40%");
+
+        $("#loadingIcon").css("display", "block");
+
+        var formData = $('form#registerForm').serialize();
+
+        console.log(formData);
+        $.ajax({
+            type: "POST",
+            url: "/upfb/register", // Replace with the URL where you want to handle the form submission
+            data: formData,
+            success: function(response) {
+                $("#loadingIcon").hide();
+
+                var parsedResponse = $.parseHTML(response);
+
+                $(parsedResponse).css('display', 'none');
+
+                $("#responseMessage").html(parsedResponse);
+                reload();
+            },
+            error: function() {
+                $("#loadingIcon").hide();
+                $("#responseMessage").html("An error occurred.");
+            }
+        });
+    });
+});
+</script>

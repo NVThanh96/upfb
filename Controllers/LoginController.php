@@ -102,21 +102,6 @@ class Login
         exit(); // Make sure to exit to prevent further execution
     }
 
-    public function register()
-    {
-        try {
-            $username = filter_input(INPUT_POST, 'username');
-            $email = filter_input(INPUT_POST, 'email');
-            $phone = filter_input(INPUT_POST, 'phone');
-            $password = filter_input(INPUT_POST, 'password');
-            if (!empty($username) && !empty($password) && !empty($email) && !empty($phone)) {
-                LoginDB::register($username, $email, $phone, $password);
-            }
-        } catch (Exception $e) {
-            $message_error = 'Vui lòng nhập đủ tất cả các trường.';
-            $this->index($message_error);
-        }
-    }
 
     // Function to check if a username already exists in the users table
     public function isValidUsername($username)
@@ -171,6 +156,40 @@ class Login
         }
     }
 
+    
+    public function register(){
+    try {
+        $username = filter_input(INPUT_POST, 'username');
+        $email = filter_input(INPUT_POST, 'email');
+        $phone = filter_input(INPUT_POST, 'phone');
+        $password = filter_input(INPUT_POST, 'password');
+        if (!empty($username) && !empty($password) && !empty($email) && !empty($phone)) {
+            LoginDB::register($username, $email, $phone, $password);
+            header('location: /upfb/user');
+            echo '<div class="alert alert-warning d-flex align-items-center justify-content-between" role="alert">
+            <div class="flex-fill mr-3">
+                <p class="mb-0">Đăng ký thành công </p>
+            </div>
+            <div class="flex-00-auto">
+                <i class="fa fa-fw fa-exclamation-circle"></i>
+            </div>
+        </div>';
+        } else {
+            echo '<div class="alert alert-warning d-flex align-items-center justify-content-between" role="alert">
+                <div class="flex-fill mr-3">
+                    <p class="mb-0">Vui lòng điền đầy đủ.</p>
+                </div>
+                <div class="flex-00-auto">
+                    <i class="fa fa-fw fa-exclamation-circle"></i>
+                </div>
+            </div>';
+        }
+    } catch (Exception $e) {
+        $message_error = 'Đã xảy ra lỗi: ' . $e->getMessage();
+        $this->index($message_error);
+    }
+}
+
 
     public function forgotPassword()
     {
@@ -194,7 +213,7 @@ class Login
 
                     if ($result === true) {
                         echo '<div class="alert alert-warning d-flex align-items-center justify-content-between" role="alert">
-                    <div class="flex-fill mr-3"><p class="mb-0">Password reset email sent successfully.</p></div>
+                    <div class="flex-fill mr-3"><p class="mb-0">Mật khẩu mới đã gửi tới mail</p></div>
                     <div class="flex-00-auto"><i class="fa fa-fw fa-exclamation-circle"></i></div>
                 </div>';
                     } else {
@@ -221,8 +240,9 @@ class Login
         <div class="flex-00-auto"><i class="fa fa-fw fa-exclamation-circle"></i></div>
     </div>';
         }
-
     }
+
+    
 
     // Function to update the user's password in the database
     private function updatePassword($username, $newPassword)

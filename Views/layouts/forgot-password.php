@@ -33,7 +33,7 @@
 #loadingIcon {
     display: none;
     background: rgb(10, 10, 10, 0.5);
-    width: 23.6%;
+    width: 23.8%;
     font-size: 100px;
     border-radius: 10%;
     position: absolute;
@@ -47,12 +47,13 @@
             <!-- Add a loading icon element -->
 
             <div class="sign-in-blk1 sign-in-blk-register1">
+
                 <div id="loadingIcon" class="text-primary">
                     <i class="fas fa-sync fa-spin fa-2x"></i>
                 </div>
                 <div id="responseMessage1" class="text-danger"></div>
 
-                <div class="">
+                <form id="forgotPassworForm">
                     <div class="form-group">
                         <label for="username" class="control-label" style="float: left;">
                             Tên tài khoản
@@ -66,7 +67,7 @@
                         </label>
                         <input name="email" placeholder="" id="email-forgot-password" type="email" class="form-control">
                     </div>
-                </div>
+                </form>
                 <div class="inner-form-all">
                     <div class="single-form-blk-register">
                         <button type="button" id="btnForgotPassword" style="padding: 0px 40px;">Gửi</button>
@@ -80,19 +81,14 @@
 <script>
 $(document).ready(function() {
     $("#btnForgotPassword").click(function(e) {
-        e.preventDefault(); // Prevent the default form submission
+
+        e.preventDefault();
 
         $("#loadingIcon").show();
 
-        var formData = {
-            username: $("#username-forgot-password").val(),
-            email: $("#email-forgot-password").val()
-        };
-        console.log(formData.username);
-        console.log(formData.email);
+        var formData = $('form').serialize();
         // Send an AJAX request
         $.ajax({
-
             type: "POST",
             url: "/upfb/forgot", // Replace with the URL where you want to handle the form submission
             async: false,
